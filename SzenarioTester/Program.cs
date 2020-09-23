@@ -26,6 +26,7 @@ namespace SzenarioTester
             var testrunner = new TestRunner();
             testrunner.Initialize(extdir);
             testrunner.Run();
+            testrunner.Dispose();
         }
     }
 }

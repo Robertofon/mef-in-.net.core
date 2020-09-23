@@ -6,8 +6,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="System.ComponentModel.Composition" Version="4.7.0" />
-    <PackageReference Include="System.Composition.Hosting" Version="5.0.0-rc.1.20451.14" />
+    <PackageReference Include="System.Composition.AttributedModel" Version="1.4.1" />
+    <PackageReference Include="System.Composition.Hosting" Version="1.4.1" />
+    <PackageReference Include="System.Composition.TypedParts" Version="1.4.1" />
   </ItemGroup>
 
   <ItemGroup>
