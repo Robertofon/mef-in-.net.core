@@ -16,12 +16,12 @@ namespace SzenarioTester
     /// </summary>
     public sealed class TestRunner: IDisposable
     {
-        private CompositionHost container;
-        private IEnumerable<ITestScenario> resolvedType;
+        private CompositionHost _container;
+        private IEnumerable<ITestScenario> _resolvedTypes;
 
         ////[ImportMany]
         ////public Lazy<ITestScenario,IDictionary<string, object>>[] TestPlugins { get; set; }
-        
+        // https://blog.softwarepotential.com/porting-to-net-standard-2-0-part-2-porting-mef-1-0-to-mef-2-0-on-net-core/
 
         public void Initialize(params string[] assemblypaths)
         {
@@ -40,8 +40,8 @@ namespace SzenarioTester
                 
                 CompositionHost container = configuration.CreateContainer();
                 
-                this.resolvedType = container.GetExports<ITestScenario>();
-                this.container = container;
+                this._resolvedTypes = container.GetExports<ITestScenario>();
+                this._container = container;
             }
             catch (Exception ex)
             {
@@ -56,7 +56,7 @@ namespace SzenarioTester
         public void Run()
         {
             Console.WriteLine("======= Start ============");
-            foreach (ITestScenario scenario in resolvedType)
+            foreach (ITestScenario scenario in _resolvedTypes)
             {
                 scenario.Test();
                 Console.WriteLine("==========");
@@ -67,7 +67,7 @@ namespace SzenarioTester
 
         public void Dispose()
         {
-            container?.Dispose();
+            _container?.Dispose();
         }
     }
 }
